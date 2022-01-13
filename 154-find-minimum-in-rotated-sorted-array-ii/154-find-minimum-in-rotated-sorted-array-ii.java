@@ -2,20 +2,20 @@ class Solution
 {
     public int findMin(int[] A) 
     {
-        int start = 0;
-		int end = A.length - 1;
+        int low = 0;
+		int high = A.length - 1;
         
-        while(start <= end)
+        while(low <= high)
         {
-            int mid = start + (end - start) / 2;
+            int mid = low + (high - low) / 2;
 
-            if(A[mid] > A[end])					// Minimum must be in A[mid + 1, end]
-                start = mid + 1;				
-            else if(A[mid] < A[end])			// Minimum must be in A[start, mid]
-                end = mid;
+            if(A[mid] > A[high])					// Minimum must be in A[mid + 1, high]
+                low = mid + 1;				
+            else if(A[mid] < A[high])			// Minimum must be in A[low, mid]
+                high = mid;
 			else // if(A[mid] == A[end])		// Skip duplicates
-				end--;
+				high--;
         }
-        return A[start];						// Loop ends when start == end
+        return A[low];						// Loop ends when start == end
     }
 }
