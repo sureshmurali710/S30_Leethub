@@ -1,23 +1,29 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if(s.length() != t.length()) return false;
+          if(s.length() != t.length()) return false;
         
-        HashMap<Character, Character> map1 = new HashMap<>(26);
+        // HashMap<Character, Character> sCharmap = new HashMap<>();
+        // HashMap<Character, Character> tCharmap= new HashMap<>();
+        
+        char [] sMap = new char[100];
+        char [] tMap = new char[100];
         
         for(int i = 0; i < s.length(); i++){
-            if(map1.get(s.charAt(i)) != null) {
-                if(map1.get(s.charAt(i)) != t.charAt(i)) return false;
-            }
-            else map1.put(s.charAt(i), t.charAt(i));
-        }
-        
-        HashMap<Character, Character> map2 = new HashMap<>(26);
-        
-        for(int i = 0; i < t.length(); i++){
-            if(map2.get(t.charAt(i)) != null) {
-                if(map2.get(t.charAt(i)) != s.charAt(i)) return false;
-            }
-            else map2.put(t.charAt(i), s.charAt(i));
+            
+            // char sChar  = s.charAt(i);
+            // char tChar  = t.charAt(i);
+            
+            
+            if(sMap[s.charAt(i) - ' '] == 0){
+                sMap[s.charAt(i) - ' '] = t.charAt(i);
+                
+            }else if(sMap[s.charAt(i) - ' '] != t.charAt(i)) return false;
+            
+            if(tMap[t.charAt(i) - ' '] == 0){
+                tMap[t.charAt(i) - ' '] = s.charAt(i);
+                
+            }else if(tMap[t.charAt(i) - ' '] != s.charAt(i)) return false;
+            
         }
         
         return true;
