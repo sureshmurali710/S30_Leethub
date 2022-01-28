@@ -14,26 +14,22 @@
  * }
  */
 class Solution {
+    TreeNode prev;
     public boolean isValidBST(TreeNode root) {
+        return inorder(root);
         
-        TreeNode prev = null;
-        Stack<TreeNode> st = new Stack<>();
+    }
+    
+    private boolean inorder(TreeNode root){
+        //base
+        if(root == null) return true;
         
-        while(root != null || !st.isEmpty()){
-            while(root != null){
-                st.push(root);
-                root = root.left;
-                
-            }
-            root = st.pop();
-            // System.out.println(root.val);
-            if(prev != null && root.val <= prev.val) return false;
-            prev = root;
-            root = root.right;
-        }
-        return true;
+        if(inorder(root.left) == false) return false;
+        if(prev != null && prev.val >= root.val) return false;
+        prev = root;
+        
+        return inorder(root.right);
+        
+        
     }
 }
-
-
-    
