@@ -17,50 +17,33 @@
 
 
 class Solution {
-    class Pair{
-        TreeNode node;
-        int value;
-        
-        public Pair(TreeNode node, int value){
-        this.node = node;
-        this.value = value;
-        }
-        
-        public TreeNode getKey(){
-            return this.node;
-        }
-        
-        public int getValue(){
-            return this.value;
-        }
-    }
+    
+   
+    int result = 0;
     public int sumNumbers(TreeNode root) {
-        Stack<Pair> st = new Stack<>();
-        int currSum = 0;
-        int result = 0;
         
-        while(root != null || !st.isEmpty()){
-            
-            while(root != null){
-                currSum = currSum*10 + root.val;
-                st.push(new Pair(root, currSum));
-                root = root.left; 
-            }
-            Pair p = st.pop();
-            root = p.getKey();
-            currSum = p.getValue();
-            
-            
-            if(root.left == null && root.right == null){
-                result += currSum; 
-            }
-            
-           
-            root = root.right;
-            
+        int currSum= 0;
+        helper(root, 0);
+        return result;  
+        
+    }
+    
+    private void helper(TreeNode root, int currSum){
+        //base
+        
+        if(root == null) return;
+       
+        
+        //logic
+        
+        currSum = currSum*10 + root.val;
+        helper(root.left, currSum);
+        
+        if(root.left == null && root.right == null){
+            result += currSum;
         }
-         
-         return result;
+        helper(root.right, currSum);
+        
     }
     
 }
