@@ -8,35 +8,35 @@ class Employee {
 */
 
 class Solution {
-    HashMap<Integer, Employee> map;
-    int result = 0;
+    
     public int getImportance(List<Employee> employees, int id) {
         if(employees == null) return 0;
         
-        
-        map = new HashMap<>();
+        int result = 0;
+        HashMap<Integer, Employee> map = new HashMap<>();
+        Queue<Integer> q = new LinkedList<>();
         
         for(Employee e:employees){
             map.put(e.id, e);
         }
         
         
-        dfs(id);
+        q.add(id);
+     
+        while(!q.isEmpty()){
+            
+            int curr = q.poll();
+            Employee e = map.get(curr);
+            result += e.importance;
+            for(int subId :  e.subordinates){
+                q.add(subId);
+            }
+        }
+        
         return result;
     }
     
-    private void dfs(int id){
-        //base
-        
-        //logic
-        Employee e = map.get(id);
-        
-        result += e.importance;
-        
-        for(int subId :  e.subordinates){
-            dfs(subId);
-        }
-    }
+  
     
     
 }
