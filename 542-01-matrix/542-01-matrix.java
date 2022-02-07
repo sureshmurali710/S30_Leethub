@@ -31,7 +31,7 @@ class Solution {
                     int c = curr[1] + dir[1];
                 
                     if(r >= 0 && r < m && c >= 0 && c < n && mat[r][c] == -1 ){
-                    mat[r][c] = dist;
+                    mat[r][c] = mat[curr[0]][curr[1]]+1;
                     q.add(new int[] {r, c});
                     }
             
