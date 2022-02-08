@@ -1,61 +1,37 @@
 class Solution {
-    private int m;
-
-    private int n;
-
+    int m;
+    int n;
+    
     public int numIslands(char[][] grid) {
-
-        //edge case
-
+        if(grid == null || grid.length == 0 || grid[0].length == 0) return 0;
         m = grid.length;
-
-        if(grid == null || m == 0) return 0;
-
         n = grid[0].length;
-
+        
         int count = 0;
-
- 
-
-        for(int i = 0; i < m; i++){
-
-            for(int j = 0; j < n; j++){
-
+        
+        for(int i = 0; i<m ; i++){
+            for(int j =0; j <n; j++){
                 if(grid[i][j] == '1'){
-
-                    count++;    
-
+                    count++;
                     dfs(grid, i, j);
-
                 }
-
             }
-
         }
-
         return count;
-
     }
-
-    private void dfs (char[][] grid, int i, int j){
-
-        // base case
-
-        if(i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == '0') return;
-
-        int[][] dirs = new int [][] {{0,1},{1,0}, {-1,0},{0,-1}};
-
+    
+    private void dfs(char [][] grid, int i, int j){
+        //base
+        if(i < 0  || i >= m || j < 0 ||j >= n || grid[i][j] == '0') return;
+           
+        //logic
+        
+        int [][] dirs = new int[][] {{0,1},{1,0},{-1,0},{0,-1}};
         grid[i][j] = '0';
-
-        for(int[] dir: dirs){
-
-            int r = i+dir[0];
-
-            int c = j+dir[1];
-
-             dfs(grid,r,c);
-
+        for(int [] dir : dirs){
+            int r = dir[0] + i;
+            int c = dir[1] + j;
+            dfs(grid, r, c);
         }
-
     }
 }
