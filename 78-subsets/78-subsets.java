@@ -16,20 +16,20 @@ class Solution {
         //base
         
         if(i == nums.length){
-            result.add(path);
+            result.add(new ArrayList<>(path));
             return;
         }
         
         //logic
+        path.add(nums[i]);
         
+        helper(nums, path, i+1);
+        
+        path.remove(path.size() - 1);
         //dont choose
         helper(nums, path, i+1);
         
-        //choose
-        List<Integer> temp = new ArrayList<>(path);
         
-        temp.add(nums[i]);
         
-        helper(nums, temp, i+1);
     }
 }
