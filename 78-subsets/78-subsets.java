@@ -12,22 +12,24 @@ class Solution {
         
     }
     
-    private void helper(int[] nums, List<Integer> path, int i){
+    private void helper(int[] nums, List<Integer> path, int index){
         //base
         
-        if(i == nums.length){
-            result.add(new ArrayList<>(path));
-            return;
+        //no base case in for loop
+        
+       //logic
+        
+        result.add(new ArrayList<>(path));
+        for(int i = index; i < nums.length; i++){
+            //action
+            path.add(nums[i]);
+            
+            //recurse
+            helper(nums, path, i+1);
+            
+            //backtrack
+            path.remove(path.size() - 1);
         }
-        
-        //logic
-        path.add(nums[i]);
-        
-        helper(nums, path, i+1);
-        
-        path.remove(path.size() - 1);
-        //dont choose
-        helper(nums, path, i+1);
         
         
         
