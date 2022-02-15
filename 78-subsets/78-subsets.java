@@ -1,37 +1,22 @@
 class Solution {
-    List<List<Integer>> result;
     public List<List<Integer>> subsets(int[] nums) {
-        result = new ArrayList<>();
         
-        if(nums == null || nums.length == 0) return result;
+        //n^2 
         
-        helper(nums, new ArrayList<>(), 0);
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
         
-        return result;
-        
-        
-    }
-    
-    private void helper(int[] nums, List<Integer> path, int index){
-        //base
-        
-        //no base case in for loop
-        
-       //logic
-        
-        result.add(new ArrayList<>(path));
-        for(int i = index; i < nums.length; i++){
-            //action
-            path.add(nums[i]);
+        for(int n : nums){
+            int size = result.size();
             
-            //recurse
-            helper(nums, path, i+1);
-            
-            //backtrack
-            path.remove(path.size() - 1);
+            for(int i = 0; i < size; i++){
+                List<Integer> subset = new ArrayList<>(result.get(i));
+                subset.add(n);
+                result.add(subset);
+            }            
         }
         
-        
+        return result;
         
     }
 }
