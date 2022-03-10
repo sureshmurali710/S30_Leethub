@@ -3,20 +3,22 @@ class Solution {
         List<Integer> result = new ArrayList<>();
         if(arr == null || arr.length == 0) return result;
         int low = 0;
-        int high = arr.length-1;
+        int high = arr.length-k;
         
-        while(high - low + 1 > k){
-            int distL = Math.abs(x - arr[low]);
-            int distR = Math.abs(x - arr[high]);
+        while(low < high){
             
-            if(distL > distR){
-                low++;
+            int mid = low + (high - low)/ 2;
+            int distF = x - arr[mid];
+            int distL = arr[mid + k] - x;
+            
+            if(distF > distL){
+                low = mid + 1;
             }else{
-                high--;
+                high = mid;
             }
         }
         
-        for(int i = low; i<= high; i++){
+        for(int i = low; i< low+k; i++){
             result.add(arr[i]);
         }
         
