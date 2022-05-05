@@ -3,20 +3,20 @@ class Solution {
         
         //base
         if(n == 0) return 1.0;
+        
+        
         //logic
-        double y = myPow(x , n/2);
+        double temp = myPow(x,n/2);
         if(n % 2 == 0){
-            return y * y;
-        } else{
-            if(n > 0){
-            return (y * y) * x;
+            return temp * temp;
         }else{
-            return (y * y) * 1/x;
+            if(n > 0){
+                return temp * temp * x;
+            }else{
+            return temp * temp * 1/x;
             }
-        } 
         
         
-        
-        
+    }
     }
 }
