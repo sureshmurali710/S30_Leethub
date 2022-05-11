@@ -21,3 +21,5 @@ class Solution {
         return result;
     }
 }
+
+//O(n-k) + O(n)
