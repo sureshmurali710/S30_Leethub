@@ -1,5 +1,6 @@
 class Solution {
     public int hIndex(int[] citations) {
+        
         Arrays.sort(citations);
         
         int left = 0;
@@ -22,5 +23,6 @@ class Solution {
             }
         }
         return n - left;
+        
     }
 }
