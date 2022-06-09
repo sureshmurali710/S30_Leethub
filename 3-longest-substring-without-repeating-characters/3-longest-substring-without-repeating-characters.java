@@ -7,7 +7,7 @@ class Solution {
         int start = 0;
         int end = 0;
         
-        while(start >= 0 && end <= s.length()-1){
+        while(start < s.length() && end <= s.length()-1){
             char c = s.charAt(end);
             while(set.contains(c)){
                 set.remove(s.charAt(start++));
