@@ -1,27 +1,21 @@
 class Solution {
     public int maximumUniqueSubarray(int[] nums) {
-        int start =0;
-        int fast = 0;
-        int rsum =0 ;
-        int max_sum = 0;
-        
         HashSet<Integer> set = new HashSet<>();
+        int sum = 0;
+        int ans = 0;
         
-        
-        while(fast < nums.length){
-            if(!set.contains(nums[fast])){
-                set.add(nums[fast]);
-                rsum = rsum + nums[fast];
-                max_sum = Math.max(rsum, max_sum);
-                fast++;
-                
-            }else{
-                set.remove(nums[start]);
-                rsum = rsum - nums[start];
-                start++;
+        for(int i = 0, j = 0; i< nums.length; i++){
+            while(set.contains(nums[i])){
+                set.remove(nums[j]);
+                sum -= nums[j++];
             }
+            sum += nums[i];
+            set.add(nums[i]);
+            ans = Math.max(ans, sum);
         }
         
-        return max_sum;
+        return ans;
+        
+        
     }
 }
