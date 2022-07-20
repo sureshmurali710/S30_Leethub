@@ -16,20 +16,16 @@
 class Solution {
     TreeNode prev;
     public boolean isValidBST(TreeNode root) {
-        return inorder(root);
         
-    }
-    
-    private boolean inorder(TreeNode root){
-        //base
         if(root == null) return true;
         
-        if(inorder(root.left) == false) return false;
-        if(prev != null && prev.val >= root.val) return false;
+        if(isValidBST(root.left) == false) return false;
+        
+        if(prev != null && prev.val >= root.val){
+            return false;
+        }
         prev = root;
         
-        return inorder(root.right);
-        
-        
+        return isValidBST(root.right);
     }
 }
