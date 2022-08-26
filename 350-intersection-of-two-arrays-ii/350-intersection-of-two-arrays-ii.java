@@ -13,13 +13,13 @@ class Solution {
         int low = 0;
         int high = nums2.length - 1;
         
-        for(int i = 0;i < nums1.length; i++){
+        for(int i  = 0; i < nums1.length; i++){
             int bsIndex = binarySearch(nums2, low, high, nums1[i]);
             if(bsIndex != -1){
                 result.add(nums1[i]);
                 low = bsIndex + 1;
             }
-        }    
+        }
         
         int [] resultArr = new int[result.size()];
         
@@ -28,11 +28,15 @@ class Solution {
         }
         
         return resultArr;
+        
+        
+        
     }
     
-    private int binarySearch(int[] arr, int low, int high, int target){
+    private int binarySearch(int [] arr, int low, int high, int target){
         while(low <= high){
             int mid = low + (high - low)/2;
+            
             if(arr[mid] == target){
                 if(mid == low || arr[mid] > arr[mid - 1]){
                     return mid;
@@ -46,7 +50,5 @@ class Solution {
             }
         }
         return -1;
-        
-        
     }
 }
